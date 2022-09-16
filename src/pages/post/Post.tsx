@@ -1,0 +1,53 @@
+import { ReactElement, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { usePosts } from '../../providers/PostProvider';
+import { Post } from '../../types/PostType';
+import { FormUpdatePost } from '../../components/FormUpdatePost/FormUpdatePost';
+import { NotificationToast } from "../../components/NotificationToast/NotificationToast";
+
+export const PostPage = () : ReactElement => {
+    const { posts, displayToast, toastLabel, changeToastLabel } = usePosts();
+    const [postId, setPostId] = useState(0);
+    const transformToastLabel = "" + toastLabel;
+
+    const getPostIdInUrl = () => {
+        return window.location.pathname;
+    };
+
+    const transformPostIdUrltoRecoverPostId = () => {
+        const initalPostId = getPostIdInUrl();
+        const transformPostId = initalPostId.substring(6,Infinity); 
+        const transformPostIdType = + transformPostId;
+        return transformPostIdType;
+    };
+
+    const deletePost = () => {
+        posts.splice(postId, 1);
+        window.location.replace('http://localhost:3000/');
+        changeToastLabel?.("⛔️ Post is deleted");
+    };
+
+    useEffect(() => {
+        setPostId(transformPostIdUrltoRecoverPostId()); 
+    }, [])
+    return (
+        <>
+            {posts.filter((post : Post) => post !== undefined && post.id === postId).map((post : Post) => (
+                <main key={post.id}>
+                    <h1>{post.title}</h1>
+                    <p>{post.description}</p>
+                    <div>
+                    <Link to="/">
+                        <button>return to Home</button>
+                    </Link>
+                    <button onClick={() => {deletePost();}}>Delete</button>
+                    </div>
+                    <br />
+                    <FormUpdatePost />
+                    <br />
+                    {displayToast ? <NotificationToast label={transformToastLabel} /> : null}
+                </main>
+            ))}
+        </>
+    )
+}
