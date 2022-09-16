@@ -3,7 +3,7 @@ import { usePosts } from '../../providers/PostProvider';
 import './FormCreatePost.css';
 
 export const FormCreatePost = () : ReactElement => {
-    const { addPost, posts, changeToastState, changeToastLabel } = usePosts();
+    const { addPost, posts, changeToastState } = usePosts();
     const [formInfoTitle, setFormInfoTitle] = useState("");
     const [formInfoDescription, setFormInfoDescription] = useState("");
 
@@ -20,7 +20,6 @@ export const FormCreatePost = () : ReactElement => {
         e.preventDefault();
         addPost?.(formInfoTitle!, formInfoDescription!, newPostId);
         changeToastState?.();
-        changeToastLabel?.("✅ Post is created");
     }, [formInfoTitle, formInfoDescription]);
 
     return (

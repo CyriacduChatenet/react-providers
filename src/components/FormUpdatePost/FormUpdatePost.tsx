@@ -7,7 +7,7 @@ export const FormUpdatePost = (): ReactElement => {
     const [newTitle, setNewTitle] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [postId, setPostId] = useState(0);
-    const { posts, updatePost, changeToastState, changeToastLabel } = usePosts();
+    const { posts, updatePost, changeToastState } = usePosts();
 
     const getPostIdInUrl = () => {
         return window.location.pathname;
@@ -24,7 +24,6 @@ export const FormUpdatePost = (): ReactElement => {
         e.preventDefault();
         updatePost?.(postId, newTitle, newDescription);
         changeToastState?.();
-        changeToastLabel?.("✍️ Post is updated");
     }, [newTitle, newDescription])
 
     useEffect(() => {

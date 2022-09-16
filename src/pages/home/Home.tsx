@@ -1,4 +1,4 @@
-import { ReactElement, useRef } from "react";
+import { ReactElement } from "react";
 import { usePosts } from "../../providers/PostProvider";
 import { FormCreatePost } from "../../components/FormCreatePost/FormCreatePost";
 import { Post } from "../../types/PostType";

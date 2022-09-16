@@ -1,17 +1,15 @@
 import { ReactElement, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { useLocalStorage } from "../../hooks/UseLocalStorage";
 import { usePosts } from "../../providers/PostProvider";
 import { Post } from "../../types/PostType";
 import "./PostCard.css";
 
 export const PostCard = ({ title, description, id }: Post): ReactElement => {
-  const { posts, deletePost, changeToastLabel } = usePosts();
+  const { posts, deletePost } = usePosts();
 
   const handleDelete = useCallback(
     (id: number) => {
       deletePost?.(id);
-      changeToastLabel?.("⛔️ Post is deleted");
     },
     [deletePost]
   );

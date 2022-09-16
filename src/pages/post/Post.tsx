@@ -8,7 +8,7 @@ import { useLocalStorage } from "../../hooks/UseLocalStorage";
 import './Post.css';
 
 export const PostPage = () : ReactElement => {
-    const { posts, displayToast, toastLabel, changeToastLabel } = usePosts();
+    const { posts, displayToast, toastLabel } = usePosts();
     const [postId, setPostId] = useState(0);
     const transformToastLabel = "" + toastLabel;
 
@@ -26,7 +26,6 @@ export const PostPage = () : ReactElement => {
     const deletePost = () => {
         posts.splice(postId, 1);
         window.location.replace('http://localhost:3000/');
-        changeToastLabel?.("⛔️ Post is deleted");
     };
 
     useEffect(() => {

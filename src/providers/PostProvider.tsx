@@ -10,7 +10,6 @@ type Context = {
     updatePost?: (id : number, newTitle : string, newDescription : string) => void;
     addPost?: (title : string, description : string, id : number) => void;
     changeToastState?: () => void;
-    changeToastLabel?: (value : string) => void;
 };
 
 type IProps = {
@@ -27,19 +26,21 @@ export const PostsProvider = ({children} : IProps) => {
     const addPost = useCallback((title: string, description: string, id : number) => {
         const newPost = {id, title, description};
         setPosts(prevPosts => [...prevPosts, newPost]);
+        setToastLabel("✅ Post is created");
     },[posts])
 
     const deletePost = useCallback((id: number) => {
         console.log(id);
-        
         const arr = posts.filter(item => item.id !== id || item.id === undefined);
-        setPosts(arr)
+        setPosts(arr);
+        setToastLabel("⛔️ Post is deleted");
     }, [posts]);
 
     const updatePost = useCallback((id : number, newTitle : string, newDescription : string) => {
         posts[id].id = id;
         posts[id].title = newTitle;
         posts[id].description = newDescription;
+        setToastLabel("✍️ Post is updated");
     },[posts]);
 
     const changeToastState = () => {
@@ -48,12 +49,8 @@ export const PostsProvider = ({children} : IProps) => {
             setDisplayToast(false);
         }, 2000)
     }
-    
-    const changeToastLabel = (value : string) => {
-        setToastLabel(value);
-    };
      return (
-        <PostContext.Provider value={{posts, addPost, deletePost, updatePost, changeToastState, displayToast, toastLabel, changeToastLabel}}>
+        <PostContext.Provider value={{posts, addPost, deletePost, updatePost, changeToastState, displayToast, toastLabel}}>
             {children}
         </PostContext.Provider>
     )
