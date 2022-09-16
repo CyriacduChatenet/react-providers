@@ -30,11 +30,14 @@ export const PostsProvider = ({children} : IProps) => {
     },[posts])
 
     const deletePost = useCallback((id: number) => {
-        const arr = posts.filter(item => item.id !== id);
+        console.log(id);
+        
+        const arr = posts.filter(item => item.id !== id || item.id === undefined);
         setPosts(arr)
     }, [posts]);
 
     const updatePost = useCallback((id : number, newTitle : string, newDescription : string) => {
+        posts[id].id = id;
         posts[id].title = newTitle;
         posts[id].description = newDescription;
     },[posts]);
@@ -43,13 +46,11 @@ export const PostsProvider = ({children} : IProps) => {
         setDisplayToast(!displayToast);
         setTimeout(() => {
             setDisplayToast(false);
-        }, 3000)
+        }, 2000)
     }
     
     const changeToastLabel = (value : string) => {
         setToastLabel(value);
-        console.log(toastLabel);
-        
     };
      return (
         <PostContext.Provider value={{posts, addPost, deletePost, updatePost, changeToastState, displayToast, toastLabel, changeToastLabel}}>

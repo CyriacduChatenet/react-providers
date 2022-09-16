@@ -1,0 +1,33 @@
+.post-card-edit-button {
+    padding: 0.5em 2em;
+    border: 1px solid var(--fifthary-color);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    color: #000000;
+    background-color: var(--fifthary-color);
+    font-weight: 500;
+}
+
+.form-update-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 10%;
+}
+
+.form-input {
+    width: 95%;
+    padding: 0.5em 2em;
+    margin: 1em 0;
+}
+
+.form-textarea {
+    width: 95%;
+    height: 10em;
+    padding: 0.5em 2em;
+    margin: 0.5em 0 1em 0;
+}

@@ -1,0 +1,12 @@
+.post-page {
+    width: 80%;
+    padding: 0 10%;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em 0 0.5em 0;
+    width: 40%;
+}

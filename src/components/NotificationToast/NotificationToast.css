@@ -1,0 +1,11 @@
+.toast {
+    position: absolute; 
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 5em;
+    bottom: 50px;
+    left: 100px;
+    background-color:  rgb(209, 234, 250);
+}

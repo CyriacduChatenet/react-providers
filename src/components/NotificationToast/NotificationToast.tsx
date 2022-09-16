@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import './NotificationToast.css';
 
 type NotificationToast = {
     label: string;
@@ -7,9 +8,9 @@ type NotificationToast = {
 export const NotificationToast = ({label}: NotificationToast) : ReactElement => {
     return (
         <>
-            <div>
+            <div className="toast">
                 <img src="" alt="" />
-                <p>hey {label}</p>
+                <p>{label}</p>
             </div>
         </>
     )

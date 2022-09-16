@@ -1,0 +1,61 @@
+.creation-form {
+    display: flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : space-around;
+    width: 80%;
+    height: 25em;
+    padding: 0 10%;
+    background-color: var(--secondary-color);
+}
+
+.creation-form-input {
+    padding: 0.5em 1em;
+    margin: 0.5em 0;
+    border: 1px solid gray;
+    border-radius: var(--md-border-radius);
+    -webkit-border-radius: var(--md-border-radius);
+    -moz-border-radius: var(--md-border-radius);
+    -ms-border-radius: var(--md-border-radius);
+    -o-border-radius: var(--md-border-radius);
+    width: 60%;
+}
+
+.creation-form-textarea {
+    padding: 0.5em 1em;
+    margin: 0.5em 0 1em 0;
+    border: 1px solid gray;
+    border-radius: var(--md-border-radius);
+    -webkit-border-radius: var(--md-border-radius);
+    -moz-border-radius: var(--md-border-radius);
+    -ms-border-radius: var(--md-border-radius);
+    -o-border-radius: var(--md-border-radius);
+    width: 60%;
+}
+
+.creation-form-button {
+    width: 20%;
+    padding: 0.75em 2em;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--md-border-radius);
+    -webkit-border-radius: var(--md-border-radius);
+    -moz-border-radius: var(--md-border-radius);
+    -ms-border-radius: var(--md-border-radius);
+    -o-border-radius: var(--md-border-radius);
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.875em;
+}
+
+.creation-form-button:hover {
+    cursor: pointer;
+    border: 2px solid var(--primary-color);
+    background-color: var(--secondary-color);
+    color: #000000;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+}

@@ -2,10 +2,9 @@ import { ReactElement } from 'react';
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/home/Home";
 import { PostPage } from './pages/post/Post';
-import { usePosts } from './providers/PostProvider';
+import './index.css';
 
 export const App = (): ReactElement => {
-  const {posts} = usePosts();
 
   return (
     <Routes>

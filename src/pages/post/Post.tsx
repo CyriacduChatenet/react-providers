@@ -4,6 +4,8 @@ import { usePosts } from '../../providers/PostProvider';
 import { Post } from '../../types/PostType';
 import { FormUpdatePost } from '../../components/FormUpdatePost/FormUpdatePost';
 import { NotificationToast } from "../../components/NotificationToast/NotificationToast";
+import { useLocalStorage } from "../../hooks/UseLocalStorage";
+import './Post.css';
 
 export const PostPage = () : ReactElement => {
     const { posts, displayToast, toastLabel, changeToastLabel } = usePosts();
@@ -30,17 +32,19 @@ export const PostPage = () : ReactElement => {
     useEffect(() => {
         setPostId(transformPostIdUrltoRecoverPostId()); 
     }, [])
+
+    useLocalStorage(posts);
     return (
-        <>
+        <div className="post-page">
             {posts.filter((post : Post) => post !== undefined && post.id === postId).map((post : Post) => (
                 <main key={post.id}>
                     <h1>{post.title}</h1>
                     <p>{post.description}</p>
-                    <div>
+                    <div className="controls">
                     <Link to="/">
-                        <button>return to Home</button>
+                        <button className="post-card-read-more-button">return to Home</button>
                     </Link>
-                    <button onClick={() => {deletePost();}}>Delete</button>
+                    <button onClick={() => {deletePost();}} className="post-card-delete-button">Delete</button>
                     </div>
                     <br />
                     <FormUpdatePost />
@@ -48,6 +52,6 @@ export const PostPage = () : ReactElement => {
                     {displayToast ? <NotificationToast label={transformToastLabel} /> : null}
                 </main>
             ))}
-        </>
+        </div>
     )
 }

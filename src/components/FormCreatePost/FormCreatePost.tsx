@@ -1,5 +1,6 @@
 import { ReactElement, useCallback, useState} from 'react';
 import { usePosts } from '../../providers/PostProvider';
+import './FormCreatePost.css';
 
 export const FormCreatePost = () : ReactElement => {
     const { addPost, posts, changeToastState, changeToastLabel } = usePosts();
@@ -23,10 +24,10 @@ export const FormCreatePost = () : ReactElement => {
     }, [formInfoTitle, formInfoDescription]);
 
     return (
-        <form action="">
-            <input type="text" placeholder="Title" onChange={handleChangeTitle} />
-            <textarea cols={80} rows={30} placeholder="Description" onChange={handleChangeDescription} />
-            <input type="submit" value="Submit" onClick={(e) => handleAdd(e)} />
+        <form action="" className="creation-form">
+            <input type="text" placeholder="Title" onChange={handleChangeTitle} className="creation-form-input" />
+            <textarea cols={80} rows={30} placeholder="Description" onChange={handleChangeDescription} className="creation-form-textarea" />
+            <input type="submit" value="Submit" onClick={(e) => handleAdd(e)} className="creation-form-button" />
         </form>
     )
 }

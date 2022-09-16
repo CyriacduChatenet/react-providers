@@ -1,0 +1,43 @@
+.post-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5em 1em;
+    width: 30%;
+    height: 30%;
+}
+
+.card-controls {
+    padding: 1em 0 0.5em 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.post-card-read-more-button {
+    padding: 0.5em 2em;
+    border: 1px solid var(--thirdary-color);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    color: var(--secondary-color);
+    background-color: var(--thirdary-color);
+    font-weight: 500;
+}
+
+.post-card-delete-button {
+    padding: 0.5em 2em;
+    border: 1px solid var(--fourthary-color);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    color: var(--secondary-color);
+    background-color: var(--fourthary-color);
+    font-weight: 500;
+}
