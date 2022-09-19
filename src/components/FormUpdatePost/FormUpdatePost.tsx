@@ -18,13 +18,13 @@ export const FormUpdatePost = (): ReactElement => {
     useEffect(() => {
       transformIdType(id+"")
       
-    }, [])
+    }, [id])
 
     const updatePostData = useCallback((e : React.FormEvent<HTMLInputElement>) => {
         e.preventDefault();
         updatePost?.(postId, newTitle, newDescription);
         changeToastState?.();
-    }, [newTitle, newDescription])
+    }, [updatePost, postId, newTitle, newDescription, changeToastState])
 
   return (
     <>

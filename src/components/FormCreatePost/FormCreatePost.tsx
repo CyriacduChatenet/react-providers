@@ -20,7 +20,7 @@ export const FormCreatePost = () : ReactElement => {
         e.preventDefault();
         addPost?.(formInfoTitle!, formInfoDescription!, newPostId);
         changeToastState?.();
-    }, [formInfoTitle, formInfoDescription]);
+    }, [posts, addPost, formInfoTitle, formInfoDescription, changeToastState]);
 
     return (
         <form action="" className="creation-form">
