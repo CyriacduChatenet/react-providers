@@ -30,14 +30,12 @@ export const HomePage = (): ReactElement => {
       </header>
       <section className="posts-container">
         {
-          allPosts.map((post: Post) => (
-            <PostCard
+          allPosts.map((post: Post) => <PostCard
               key={post.id}
               title={post.title}
               description={post.description}
               id={post.id}
-            />
-          ))}
+            />)}
       </section>
       {displayToast ? <NotificationToast label={transformToastLabel} /> : null}
     </>
