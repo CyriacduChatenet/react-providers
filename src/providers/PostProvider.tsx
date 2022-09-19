@@ -35,10 +35,9 @@ export const PostsProvider = ({children} : IProps) => {
         setToastLabel("⛔️ Post is deleted");
     }, [posts]);
 
-    const updatePost = useCallback((id : number, newTitle : string, newDescription : string) => {
-        posts[id].id = id;
-        posts[id].title = newTitle;
-        posts[id].description = newDescription;
+    const updatePost = useCallback((id : number, title : string, description : string) => {
+        posts[id] = {...posts[id], id, title, description};
+        setPosts(posts);
         setToastLabel("✍️ Post is updated");
     },[posts]);
 
