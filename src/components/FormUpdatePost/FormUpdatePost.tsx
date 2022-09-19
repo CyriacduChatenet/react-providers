@@ -6,7 +6,7 @@ import './FormUpdate.css';
 export const FormUpdatePost = (): ReactElement => {
     const [newTitle, setNewTitle] = useState("");
     const [newDescription, setNewDescription] = useState("");
-    const { posts, updatePost, changeToastState } = usePosts();
+    const { updatePost, changeToastState } = usePosts();
     const [postId, setPostId] = useState(0);
 
     const { id } = useParams();

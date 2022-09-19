@@ -1,11 +1,11 @@
 import { ReactElement } from "react";
 import './NotificationToast.css';
 
-type NotificationToast = {
+type NotificationToastType = {
     label: string;
 }
 
-export const NotificationToast = ({label}: NotificationToast) : ReactElement => {
+export const NotificationToast = ({label}: NotificationToastType) : ReactElement => {
     return (
         <>
             <div className="toast">

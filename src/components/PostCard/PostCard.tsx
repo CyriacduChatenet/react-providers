@@ -5,7 +5,7 @@ import { Post } from "../../types/PostType";
 import "./PostCard.css";
 
 export const PostCard = ({ title, description, id }: Post): ReactElement => {
-  const { posts, deletePost } = usePosts();
+  const { deletePost } = usePosts();
 
   const handleDelete = useCallback(
     (id: number) => {
