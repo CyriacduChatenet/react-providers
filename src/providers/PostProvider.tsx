@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode, useState, useCallback, Dispatch, SetStateAction } from 'react';
+import { createContext, useContext, ReactNode, useState, useCallback } from 'react';
 import json from '../data/data.json';
 import { Post } from '../types/PostType';
 
@@ -27,7 +27,7 @@ export const PostsProvider = ({children} : IProps) => {
         const newPost = {id, title, description};
         setPosts(prevPosts => [...prevPosts, newPost]);
         setToastLabel("✅ Post is created");
-    },[posts])
+    },[])
 
     const deletePost = useCallback((id: number) => {
         const arr = posts.filter(item => item.id !== id && item.id !== undefined);
