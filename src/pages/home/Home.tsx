@@ -19,8 +19,6 @@ export const HomePage = (): ReactElement => {
   };
 
   const allPosts : Post[] = parseLocalStorage('posts');
-
-  console.log(allPosts);
   
   return (
     <>
