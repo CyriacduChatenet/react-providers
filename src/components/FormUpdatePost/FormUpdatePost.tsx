@@ -1,24 +1,24 @@
-import { ReactElement, useCallback, useEffect, useState } from 'react';
-import { useLocalStorage } from '../../hooks/UseLocalStorage';
+import { ReactElement, useCallback, useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { usePosts } from '../../providers/PostProvider';
 import './FormUpdate.css';
 
 export const FormUpdatePost = (): ReactElement => {
     const [newTitle, setNewTitle] = useState("");
     const [newDescription, setNewDescription] = useState("");
-    const [postId, setPostId] = useState(0);
     const { posts, updatePost, changeToastState } = usePosts();
+    const [postId, setPostId] = useState(0);
 
-    const getPostIdInUrl = () => {
-        return window.location.pathname;
-    };
+    const { id } = useParams();
 
-    const transformPostIdUrltoRecoverPostId = () => {
-        const initalPostId = getPostIdInUrl();
-        const transformPostId = initalPostId.substring(6,Infinity); 
-        const transformPostIdType = + transformPostId;
-        return transformPostIdType;
-    };
+    const transformIdType = (value : string) => {
+      return setPostId(+value);
+    }
+
+    useEffect(() => {
+      transformIdType(id+"")
+      
+    }, [])
 
     const updatePostData = useCallback((e : React.FormEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -26,9 +26,6 @@ export const FormUpdatePost = (): ReactElement => {
         changeToastState?.();
     }, [newTitle, newDescription])
 
-    useEffect(() => {
-        setPostId(transformPostIdUrltoRecoverPostId());
-    }, [])
   return (
     <>
       <h2>Edit post data</h2>

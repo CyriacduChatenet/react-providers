@@ -30,8 +30,7 @@ export const PostsProvider = ({children} : IProps) => {
     },[posts])
 
     const deletePost = useCallback((id: number) => {
-        console.log(id);
-        const arr = posts.filter(item => item.id !== id || item.id === undefined);
+        const arr = posts.filter(item => item.id !== id && item.id !== undefined);
         setPosts(arr);
         setToastLabel("⛔️ Post is deleted");
     }, [posts]);
