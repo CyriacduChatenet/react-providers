@@ -26,13 +26,7 @@ export const HomePage = (): ReactElement => {
         <FormCreatePost />
       </header>
       <section className="posts-container">
-        {
-          allPosts.length === null ? allPosts.filter(post => post.id !== undefined && post.id !== null).map((post: Post) => <PostCard
-              key={post.id}
-              title={post.title}
-              description={post.description}
-              id={post.id}
-            />) : posts.filter(post => post.id !== undefined && post.id !== null).map((post: Post) => <PostCard
+        {posts.filter(post => post.id !== undefined && post.id !== null).map((post: Post) => <PostCard
             key={post.id}
             title={post.title}
             description={post.description}
