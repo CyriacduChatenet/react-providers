@@ -16,6 +16,8 @@ export const HomePage = (): ReactElement => {
     return JSON.parse(actualLocalStorageInString);
   };
 
+  const allPosts : Post[] = parseLocalStorage('posts')
+
   useLocalStorage(posts);
   return (
     <>
@@ -24,8 +26,8 @@ export const HomePage = (): ReactElement => {
         <FormCreatePost />
       </header>
       <section className="posts-container">
-        {parseLocalStorage('posts')
-          .filter((post: Post) => typeof post !== "undefined")
+        {
+          allPosts.filter((post: Post) => typeof post !== "undefined")
           .map((post: Post) => (
             <PostCard
               key={post.id}
