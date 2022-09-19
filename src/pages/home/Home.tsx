@@ -30,7 +30,7 @@ export const HomePage = (): ReactElement => {
       </header>
       <section className="posts-container">
         {
-          allPosts.length > 0 ? allPosts.filter(post => post.id !== undefined && post.id !== null).map((post: Post) => <PostCard
+          allPosts !== null ? allPosts.filter(post => post.id !== undefined && post.id !== null).map((post: Post) => <PostCard
               key={post.id}
               title={post.title}
               description={post.description}
