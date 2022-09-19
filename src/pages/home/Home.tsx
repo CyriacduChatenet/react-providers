@@ -27,7 +27,7 @@ export const HomePage = (): ReactElement => {
       </header>
       <section className="posts-container">
         {
-          allPosts.filter((post: Post) => typeof post !== undefined && post !== null)
+          allPosts.filter((post: Post) => typeof post !== "undefined" && post !== null)
           .map((post: Post) => (
             <PostCard
               key={post.id}
