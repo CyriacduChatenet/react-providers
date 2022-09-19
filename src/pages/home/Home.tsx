@@ -11,17 +11,14 @@ export const HomePage = (): ReactElement => {
   const { posts, displayToast, toastLabel } = usePosts();
   const transformToastLabel = "" + toastLabel;
 
+  useLocalStorage(posts);
+
   const parseLocalStorage = (key: string) => {
     const actualLocalStorageInString = localStorage.getItem(`${key}`) + "";
     return JSON.parse(actualLocalStorageInString);
   };
 
-  const allPosts : Post[] = parseLocalStorage('posts')
-
-  console.log(allPosts);
-  
-
-  useLocalStorage(posts);
+  const allPosts : Post[] = parseLocalStorage('posts');
   return (
     <>
       <header>
@@ -30,12 +27,17 @@ export const HomePage = (): ReactElement => {
       </header>
       <section className="posts-container">
         {
-          allPosts.map((post: Post) => <PostCard
+          allPosts.length === null ? allPosts.filter(post => post.id !== undefined && post.id !== null).map((post: Post) => <PostCard
               key={post.id}
               title={post.title}
               description={post.description}
               id={post.id}
-            />)}
+            />) : posts.filter(post => post.id !== undefined && post.id !== null).map((post: Post) => <PostCard
+            key={post.id}
+            title={post.title}
+            description={post.description}
+            id={post.id}
+          />)}
       </section>
       {displayToast ? <NotificationToast label={transformToastLabel} /> : null}
     </>

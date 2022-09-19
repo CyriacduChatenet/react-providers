@@ -19,7 +19,7 @@ export const useLocalStorage = (state : Post[]) => {
     }
 
    useEffect(() => {
-    if(localStorage.getItem('posts') === null){
+    if(localStorage.length === 0){
         sendEncrypedStateToLocalStorage();
     }  else if (parseLocalStorage('posts') !== state) {
         localStorage.clear();

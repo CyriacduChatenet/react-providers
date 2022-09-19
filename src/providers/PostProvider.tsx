@@ -41,7 +41,6 @@ export const PostsProvider = ({children} : IProps) => {
         setPosts(posts);
         setToastLabel("✍️ Post is updated");
     },[posts]);
-    
     const changeToastState = () => {
         setDisplayToast(!displayToast);
         setTimeout(() => {
