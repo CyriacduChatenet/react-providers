@@ -18,6 +18,9 @@ export const HomePage = (): ReactElement => {
 
   const allPosts : Post[] = parseLocalStorage('posts')
 
+  console.log(allPosts);
+  
+
   useLocalStorage(posts);
   return (
     <>
@@ -27,8 +30,7 @@ export const HomePage = (): ReactElement => {
       </header>
       <section className="posts-container">
         {
-          allPosts.filter((post: Post) => typeof post !== "undefined" && post !== null)
-          .map((post: Post) => (
+          allPosts.map((post: Post) => (
             <PostCard
               key={post.id}
               title={post.title}
