@@ -1,20 +1,20 @@
-import { ReactElement } from "react";
-import { usePosts } from "../../providers/PostProvider";
-import { FormCreatePost } from "../../components/FormCreatePost/FormCreatePost";
-import { Post } from "../../types/PostType";
-import { PostCard } from "../../components/PostCard/PostCard";
-import { NotificationToast } from "../../components/NotificationToast/NotificationToast";
-import "./Home.css";
-import { useLocalStorage } from "../../hooks/UseLocalStorage";
+import { ReactElement } from 'react';
+import { usePosts } from '../../providers/PostProvider';
+import { FormCreatePost } from '../../components/FormCreatePost/FormCreatePost';
+import { Post } from '../../types/PostType';
+import { PostCard } from '../../components/PostCard/PostCard';
+import { NotificationToast } from '../../components/NotificationToast/NotificationToast';
+import './Home.css';
+import { useLocalStorage } from '../../hooks/UseLocalStorage';
 
 export const HomePage = (): ReactElement => {
   const { posts, displayToast, toastLabel } = usePosts();
-  const transformToastLabel = "" + toastLabel;
+  const transformToastLabel = '' + toastLabel;
 
   useLocalStorage(posts);
 
   const parseLocalStorage = (key: string) => {
-    const actualLocalStorageInString = localStorage.getItem(`${key}`) + "";
+    const actualLocalStorageInString = localStorage.getItem(`${key}`) + '';
     return JSON.parse(actualLocalStorageInString);
   };
 
@@ -23,10 +23,10 @@ export const HomePage = (): ReactElement => {
   return (
     <>
       <header>
-        <h1 className="title">Simple blog</h1>
+        <h1 className='title'>Simple blog</h1>
         <FormCreatePost />
       </header>
-      <section className="posts-container">
+      <section className='posts-container'>
         {
           allPosts !== null ? allPosts.filter(post => post.id !== undefined && post.id !== null).map((post: Post) => <PostCard
               key={post.id}

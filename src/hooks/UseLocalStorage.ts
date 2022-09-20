@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Post } from "../types/PostType";
+import { useEffect } from 'react';
+import { Post } from '../types/PostType';
 
 export const useLocalStorage = (state : Post[]) => {
 
@@ -10,7 +10,7 @@ export const useLocalStorage = (state : Post[]) => {
     };
 
     const parseLocalStorage = (key : string) => {
-        const actualLocalStorageInString = localStorage.getItem(`${key}`) + "";
+        const actualLocalStorageInString = localStorage.getItem(`${key}`) + '';
         return JSON.parse(actualLocalStorageInString);
     }
 

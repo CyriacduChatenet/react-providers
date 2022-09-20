@@ -4,8 +4,8 @@ import { usePosts } from '../../providers/PostProvider';
 import './FormUpdate.css';
 
 export const FormUpdatePost = (): ReactElement => {
-    const [newTitle, setNewTitle] = useState("");
-    const [newDescription, setNewDescription] = useState("");
+    const [newTitle, setNewTitle] = useState('');
+    const [newDescription, setNewDescription] = useState('');
     const { updatePost, changeToastState } = usePosts();
     const [postId, setPostId] = useState(0);
 
@@ -16,7 +16,7 @@ export const FormUpdatePost = (): ReactElement => {
     }
 
     useEffect(() => {
-      transformIdType(id+"")
+      transformIdType(id+'')
       
     }, [id])
 
@@ -30,10 +30,10 @@ export const FormUpdatePost = (): ReactElement => {
     <>
       <h2>Edit post data</h2>
       <br />
-      <form action="" className="form-update-post">
-        <input type="text" name="title" placeholder="Title" onChange={(e) => setNewTitle(e.target.value)} className="form-input" />
-        <textarea  name="description" placeholder="Description" onChange={(e) => setNewDescription(e.target.value)} className="form-textarea"></textarea>
-        <input type="submit" onClick={(e) => updatePostData(e)} value="Update post" className="post-card-edit-button" />
+      <form action='' className='form-update-post'>
+        <input type='text' name='title' placeholder='Title' onChange={(e) => setNewTitle(e.target.value)} className='form-input' />
+        <textarea  name='description' placeholder='Description' onChange={(e) => setNewDescription(e.target.value)} className='form-textarea'></textarea>
+        <input type='submit' onClick={(e) => updatePostData(e)} value='Update post' className='post-card-edit-button' />
       </form>
     </>
   );
