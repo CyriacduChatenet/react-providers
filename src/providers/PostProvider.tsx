@@ -35,8 +35,24 @@ export const PostsProvider = ({children} : IProps) => {
             setDisplayToast(false);
         }, 2000)
     }
+
+    const parseLocalStorage = (key: string) => {
+        const actualLocalStorageInString = localStorage.getItem(`${key}`) + '';
+        return JSON.parse(actualLocalStorageInString);
+    };
+
+    const renderPost = useCallback(() => {
+        const localStorageOfPost : Post[] = parseLocalStorage('posts');
+
+        if(localStorageOfPost === null) {
+            return posts.filter((post : Post) => post.id !== undefined && post.id !== null);
+        } else {
+            return localStorageOfPost.filter((post : Post) => post.id !== undefined && post.id !== null);
+        }
+    }, [posts]);
+
      return (
-        <PostContext.Provider value={{posts, addPost, deletePost, updatePost, changeToastState, displayToast, toastLabel}}>
+        <PostContext.Provider value={{posts, addPost, deletePost, updatePost, changeToastState, displayToast, toastLabel, renderPost}}>
             {children}
         </PostContext.Provider>
     );

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, SetStateAction } from "react";
 import { Post } from "./PostType";
 
 export type Context = {
@@ -9,6 +9,7 @@ export type Context = {
     updatePost?: (id : number, newTitle : string, newDescription : string) => void;
     addPost?: (title : string, description : string, id : number) => void;
     changeToastState?: () => void;
+    renderPost?: () => SetStateAction<Post[]>;
 };
 
 export type IProps = {
