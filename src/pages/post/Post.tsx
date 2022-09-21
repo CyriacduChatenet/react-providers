@@ -26,7 +26,10 @@ export const PostPage = () : ReactElement => {
                     <Link to='/'>
                         <button className='post-card-read-more-button'>return to Home</button>
                     </Link>
-                    <button onClick={() => {deletePost(Id)}} className='post-card-delete-button'>Delete</button>
+                    <button onClick={() => {
+                        deletePost(Id);
+                        window.location.href = 'http://localhost:3000/' 
+                        }} className='post-card-delete-button'>Delete</button>
                     </div>
                     <br />
                     <FormUpdatePost />
