@@ -61,8 +61,8 @@ export const PostsProvider = ({children} : IProps) => {
 
     const deletePost = useCallback((id: number) => {
         const arr = posts.filter((item : Post) => item.id !== id && item.id !== undefined && item.id !== null);
-        
         setPosts(arr);
+        window.location.href = 'http://localhost:3000/' 
         setToastLabel('⛔️ Post is deleted');
     }, [posts]);
 
