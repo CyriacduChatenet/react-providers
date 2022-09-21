@@ -1,7 +1,9 @@
 import { ReactElement, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { usePosts } from '../../providers/PostProvider';
+
+import { usePosts } from '../../providers/postProvider/PostProvider';
 import { Post } from '../../types/PostType';
+
 import './PostCard.css';
 
 export const PostCard = ({ title, description, id }: Post): ReactElement => {

@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+
 import './NotificationToast.css';
 
 type NotificationToastType = {

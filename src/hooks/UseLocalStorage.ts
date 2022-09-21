@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { Post } from '../types/PostType';
 
 export const useLocalStorage = (state : Post[]) => {
@@ -9,11 +10,6 @@ export const useLocalStorage = (state : Post[]) => {
         return JSON.stringify(filteredState);
     };
 
-    const parseLocalStorage = (key : string) => {
-        const actualLocalStorageInString = localStorage.getItem(`${key}`) + '';
-        return JSON.parse(actualLocalStorageInString);
-    }
-
     const sendEncrypedStateToLocalStorage = () => {
         localStorage.setItem('posts', encryptStateToLocalStorage());
     }
@@ -21,9 +17,6 @@ export const useLocalStorage = (state : Post[]) => {
    useEffect(() => {
     if(localStorage.length === 0){
         sendEncrypedStateToLocalStorage();
-    }  else if (parseLocalStorage('posts') !== state) {
-        localStorage.clear();
-        localStorage.setItem('posts', encryptStateToLocalStorage());
     }
    });
 };

@@ -1,9 +1,11 @@
 import { ReactElement, useCallback, useState} from 'react';
-import { usePosts } from '../../providers/PostProvider';
+
+import { usePosts } from '../../providers/postProvider/PostProvider';
+
 import './FormCreatePost.css';
 
 export const FormCreatePost = () : ReactElement => {
-    const { addPost, posts, changeToastState } = usePosts();
+    const { addPost, allPosts, changeToastState } = usePosts();
     const [formInfoTitle, setFormInfoTitle] = useState('');
     const [formInfoDescription, setFormInfoDescription] = useState('');
 
@@ -16,11 +18,11 @@ export const FormCreatePost = () : ReactElement => {
     }
 
     const handleAdd = useCallback((e : any) => {
-        const newPostId = posts.length += 1;
+        const newPostId = allPosts.length += 1;
         e.preventDefault();
         addPost?.(formInfoTitle!, formInfoDescription!, newPostId);
         changeToastState?.();
-    }, [posts, addPost, formInfoTitle, formInfoDescription, changeToastState]);
+    }, [allPosts, addPost, formInfoTitle, formInfoDescription, changeToastState]);
 
     return (
         <form action='' className='creation-form'>
