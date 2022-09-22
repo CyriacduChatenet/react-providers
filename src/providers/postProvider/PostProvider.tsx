@@ -66,8 +66,10 @@ export const PostsProvider = ({children} : IProps) => {
     }, [posts]);
 
     const updatePost = useCallback((id : number, title : string, description : string) => {
-        posts[id] = {...posts.at(id), id, title, description};
-        setPosts(posts);
+        let allPosts = [...posts];
+        posts[id] = {...posts[id], id, title, description};
+        setPosts(allPosts);
+        
         setToastLabel('✍️ Post is updated');
     },[posts]);
     
