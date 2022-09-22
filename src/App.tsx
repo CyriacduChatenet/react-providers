@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { Route, Routes } from "react-router-dom";
-import { HomePage } from "./pages/home/Home";
-import { PostPage } from './pages/post/Post';
+import { HomePage } from "./pages/home";
+import { PostPage } from './pages/post';
 import './index.css';
 
 export const App = (): ReactElement => {

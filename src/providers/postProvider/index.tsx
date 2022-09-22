@@ -25,10 +25,13 @@ type Context = {
     allPosts : Post[];
     displayToast : boolean;
     toastLabel : string;
+    searchValue : string;
     deletePost: (id : number) => void;
     updatePost: (id : number, newTitle : string, newDescription : string) => void;
     addPost: (title : string, description : string, id : number) => void;
     changeToastState: () => void;
+    changeSearchValueState: (state : string) => void;
+    searchPost: () => Post[];
 };
 
 type IProps = {
@@ -38,18 +41,24 @@ type IProps = {
 const PostContext = createContext<Context>({
     posts : [],
     allPosts,
+    searchValue : '',
     displayToast : false,
     toastLabel : '',
     deletePost : () => {},
     updatePost : () => {},
     addPost : () => {},
-    changeToastState : () => {}
+    changeToastState : () => {},
+    changeSearchValueState : () => {},
+    searchPost: () => {
+        return []
+    },
 });
 
 export const PostsProvider = ({children} : IProps) => {
     const [posts, setPosts] = useState<Post[]>(allPosts);
     const [displayToast, setDisplayToast] = useState(false);
     const [toastLabel, setToastLabel] = useState('');
+    const [searchValue, setSearchValue] = useState('');
 
     const addPost = useCallback((title: string, description: string, id : number) => {
         const newPost = {id, title, description};
@@ -66,9 +75,13 @@ export const PostsProvider = ({children} : IProps) => {
     }, [posts]);
 
     const updatePost = useCallback((id : number, title : string, description : string) => {
-        let allPosts = [...posts];
-        posts[id] = {...posts[id], id, title, description};
-        setPosts(allPosts);
+        const postEdit = posts.map((post : Post) => {
+            if(post.id === id) {
+                return {...post, id, title, description};
+            }
+            return post;
+        })
+        setPosts(postEdit);
         
         setToastLabel('✍️ Post is updated');
     },[posts]);
@@ -78,10 +91,29 @@ export const PostsProvider = ({children} : IProps) => {
         setTimeout(() => {
             setDisplayToast(false);
         }, 2000)
+    };
+
+    const changeSearchValueState = (state : string) => {
+        setSearchValue(state);
+    };
+
+    const searchPost = () => {
+        if(searchValue === ""){
+            if(localStorage.length === 0) {
+                return posts;
+            } else {
+                const localStorage = window.localStorage.getItem('posts');
+                const localStorageTyped : string = localStorage as string;
+                const parseLocalStorage = JSON.parse(localStorageTyped);
+                return parseLocalStorage;
+            }
+        } else {
+            return posts.filter((post : Post) => post.title === searchValue || post.description === searchValue || post.title.includes(searchValue) || post.description.includes(searchValue));
+        }
     }
 
      return (
-        <PostContext.Provider value={{allPosts, addPost, deletePost, updatePost, changeToastState, displayToast, toastLabel, posts}}>
+        <PostContext.Provider value={{allPosts, addPost, deletePost, updatePost, changeToastState, displayToast, toastLabel, posts, searchValue, changeSearchValueState, searchPost}}>
             {children}
         </PostContext.Provider>
     );

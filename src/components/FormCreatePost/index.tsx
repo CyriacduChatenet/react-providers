@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useState} from 'react';
 
-import { usePosts } from '../../providers/postProvider/PostProvider';
+import { usePosts } from '../../providers/postProvider';
 
 import './FormCreatePost.css';
 

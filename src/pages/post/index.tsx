@@ -1,10 +1,10 @@
-import { ReactElement } from 'react';
+import { ReactElement} from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { usePosts } from '../../providers/postProvider/PostProvider';
+import { usePosts } from '../../providers/postProvider';
 import { Post } from '../../types/PostType';
-import { FormUpdatePost } from '../../components/FormUpdatePost/FormUpdatePost';
-import { NotificationToast } from '../../components/NotificationToast/NotificationToast';
+import { FormUpdatePost } from '../../components/FormUpdatePost';
+import { NotificationToast } from '../../components/NotificationToast';
 import { useLocalStorage } from '../../hooks/UseLocalStorage';
 
 import './Post.css';
@@ -12,10 +12,12 @@ import './Post.css';
 export const PostPage = () : ReactElement => {
     const { posts, displayToast, toastLabel, deletePost } = usePosts();
     const transformToastLabel = '' + toastLabel;
+
     const {id = ""} = useParams();
     const Id = Number(id)
 
     useLocalStorage(posts);
+
     return (
         <div className='post-page'>
             {posts.filter((post : Post) => post !== undefined && post.id === Id).map((post : Post) => (

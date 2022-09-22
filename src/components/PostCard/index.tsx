@@ -1,7 +1,7 @@
 import { ReactElement, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
-import { usePosts } from '../../providers/postProvider/PostProvider';
+import { usePosts } from '../../providers/postProvider';
 import { Post } from '../../types/PostType';
 
 import './PostCard.css';

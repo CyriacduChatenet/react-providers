@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { Post } from '../types/PostType';
+import { usePosts } from '../providers/postProvider';
 
 export const useLocalStorage = (state : Post[]) => {
+    const {posts} = usePosts();
 
     const encryptStateToLocalStorage = () => {
-        const filteredState = state.filter(post => post !== null).filter(post => post !== undefined);
+        const filteredState = state.filter(post => post !== null && post !== undefined);
         
         return JSON.stringify(filteredState);
     };
@@ -15,8 +17,12 @@ export const useLocalStorage = (state : Post[]) => {
     }
 
    useEffect(() => {
-    if(localStorage.length === 0){
+    if(window.localStorage.length === 0){
         sendEncrypedStateToLocalStorage();
     }
-   });
+    }, [])
+
+    useMemo(() => {
+        sendEncrypedStateToLocalStorage();
+    }, [posts]);
 };

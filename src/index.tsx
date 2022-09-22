@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { PostsProvider } from "./providers/postProvider/PostProvider";
+import { PostsProvider } from "./providers/postProvider";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
