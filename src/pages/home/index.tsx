@@ -1,7 +1,6 @@
 import { ReactElement, useMemo, ReactNode } from 'react';
 
 import { usePosts } from '../../providers/postProvider';
-import { useLocalStorage } from '../../hooks/UseLocalStorage';
 import { Post } from '../../types/PostType';
 import { FormCreatePost } from '../../components/FormCreatePost';
 import { PostCard } from '../../components/PostCard';
@@ -11,10 +10,8 @@ import { SearchBar } from '../../components/searchBar';
 import './Home.css';
 
 export const HomePage = (): ReactElement => {
-  const { displayToast, toastLabel, posts, searchPost } = usePosts();
+  const { displayToast, toastLabel, searchPost } = usePosts();
   const transformToastLabel = '' + toastLabel;
-
-  useLocalStorage(posts);
 
   const renderPosts : ReactNode = useMemo(() => {
     return searchPost().map((post: Post) => <PostCard

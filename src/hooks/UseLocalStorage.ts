@@ -1,33 +1,18 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Post } from '../types/PostType';
-import { usePosts } from '../providers/postProvider';
 
-export const useLocalStorage = (state : Post[]) => {
-    const {posts} = usePosts();
-    
+export const useLocalStorage = (key : string, state : Post[]) => {
 
-    const encryptStateToLocalStorage = (state : Post[]) => {
-        return JSON.stringify(state);
+    const parseJson = () => {
+        return JSON.parse(window.localStorage.getItem(key) || 'null') || state
     };
 
-    const decryptLocalStorageToState = (key : string) => {
-        return JSON.parse(key);
-    };
-
-    const sendDataFromStateToLocalStorage = () => {   
-        return window.localStorage.setItem('posts', encryptStateToLocalStorage(posts));
-    };
-
-    useMemo(() => {
-        sendDataFromStateToLocalStorage();
-    }, [posts]);
+    const [storageValue, setStorageValue] = useState<any>(parseJson());
 
     useEffect(() => {
-        if (window.localStorage.length === 0) {
-            decryptLocalStorageToState('posts');
-        } else {
-            sendDataFromStateToLocalStorage();
-        }
-    }, [])
+        localStorage.setItem(key, JSON.stringify(storageValue));
+    }, [key, storageValue]);
+
+    return [storageValue, setStorageValue];
 };

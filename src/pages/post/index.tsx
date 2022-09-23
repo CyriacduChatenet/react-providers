@@ -5,7 +5,6 @@ import { usePosts } from '../../providers/postProvider';
 import { Post } from '../../types/PostType';
 import { FormUpdatePost } from '../../components/FormUpdatePost';
 import { NotificationToast } from '../../components/NotificationToast';
-import { useLocalStorage } from '../../hooks/UseLocalStorage';
 
 import './Post.css';
 
@@ -15,8 +14,6 @@ export const PostPage = () : ReactElement => {
 
     const {id = ""} = useParams();
     const Id = Number(id)
-
-    useLocalStorage(posts);
 
     return (
         <div className='post-page'>

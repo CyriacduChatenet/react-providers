@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useCallback, ReactNode} from 'react';
 
 import { Post } from '../../types/PostType';
+import { useLocalStorage } from '../../hooks/UseLocalStorage';
 
 const allPosts = [
     {
@@ -60,6 +61,8 @@ export const PostsProvider = ({children} : IProps) => {
     const [toastLabel, setToastLabel] = useState('');
     const [searchValue, setSearchValue] = useState('');
 
+    useLocalStorage('posts', posts);
+
     const addPost = useCallback((title: string, description: string, id : number) => {
         setPosts(posts.filter((post : Post) => post.id !== undefined && post.id !== null))
         setPosts(prevPosts => [...prevPosts, {id, title, description}]);
@@ -69,12 +72,12 @@ export const PostsProvider = ({children} : IProps) => {
     const deletePost = useCallback((id: number) => {
         setPosts(prevPosts => prevPosts.filter((post : Post) => post.id !== id && post.id !== undefined && post.id !== null ));
         setToastLabel('⛔️ Post is deleted');
-    }, [posts]);
+    }, []);
 
     const updatePost = useCallback((id : number, title : string, description : string) => {
         setPosts(prevPosts => prevPosts.map((post : Post) => post.id === id ? {...post, title, description}: post)) 
         setToastLabel('✍️ Post is updated');
-    },[posts]);
+    },[]);
     
     const changeToastState = () => {
         setDisplayToast(!displayToast);
