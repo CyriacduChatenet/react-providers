@@ -1,18 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-import { Post } from '../types/PostType';
 
-export const useLocalStorage = (key : string, state : Post[]) => {
+export function useLocalStorage<T>(defaultValues: T, key: string) {
+  const parseJson = () => {
+    const storage = window.localStorage.getItem(key);
+    return storage !== null ? JSON.parse(storage) : defaultValues;
+  };
 
-    const parseJson = () => {
-        return JSON.parse(window.localStorage.getItem(key) || 'null') || state
-    };
+  const [storageValue, setStorageValue] = useState(parseJson());
 
-    const [storageValue, setStorageValue] = useState<any>(parseJson());
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(storageValue));
+  }, [key, storageValue]);
 
-    useEffect(() => {
-        localStorage.setItem(key, JSON.stringify(storageValue));
-    }, [key, storageValue]);
-
-    return [storageValue, setStorageValue];
-};
+  return [storageValue, setStorageValue];
+}

@@ -6,23 +6,23 @@ import './FormCreatePost.css';
 
 export const FormCreatePost = () : ReactElement => {
     const { addPost, allPosts, changeToastState } = usePosts();
-    const [formInfoTitle, setFormInfoTitle] = useState('');
-    const [formInfoDescription, setFormInfoDescription] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
 
     const handleChangeTitle = (e : React.FormEvent<HTMLInputElement>) => {
-        setFormInfoTitle(e.currentTarget.value);
+        setTitle(e.currentTarget.value);
     }
 
     const handleChangeDescription = (f : React.FormEvent<HTMLTextAreaElement>) => {
-        setFormInfoDescription(f.currentTarget.value);  
+        setDescription(f.currentTarget.value);  
     }
 
     const handleAdd = useCallback((e : any) => {
         const newPostId = allPosts.length += 1;
         e.preventDefault();
-        addPost?.(formInfoTitle!, formInfoDescription!, newPostId);
+        addPost?.(title!, description!, newPostId);
         changeToastState?.();
-    }, [allPosts, addPost, formInfoTitle, formInfoDescription, changeToastState]);
+    }, [allPosts, addPost, title, description, changeToastState]);
 
     return (
         <form action='' className='creation-form'>
