@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, ReactNode} from 'react';
 
 import { Post } from '../../types/PostType';
 
@@ -61,28 +61,18 @@ export const PostsProvider = ({children} : IProps) => {
     const [searchValue, setSearchValue] = useState('');
 
     const addPost = useCallback((title: string, description: string, id : number) => {
-        const newPost = {id, title, description};
-        
         setPosts(posts.filter((post : Post) => post.id !== undefined && post.id !== null))
-        setPosts(prevPosts => [...prevPosts, newPost]);
+        setPosts(prevPosts => [...prevPosts, {id, title, description}]);
         setToastLabel('✅ Post is created');
     },[posts])
 
     const deletePost = useCallback((id: number) => {
-        const arr = posts.filter((item : Post) => item.id !== id && item.id !== undefined && item.id !== null);
-        setPosts(arr);
+        setPosts(prevPosts => prevPosts.filter((post : Post) => post.id !== id && post.id !== undefined && post.id !== null ));
         setToastLabel('⛔️ Post is deleted');
     }, [posts]);
 
     const updatePost = useCallback((id : number, title : string, description : string) => {
-        const postEdit = posts.map((post : Post) => {
-            if(post.id === id) {
-                return {...post, id, title, description};
-            }
-            return post;
-        })
-        setPosts(postEdit);
-        
+        setPosts(prevPosts => prevPosts.map((post : Post) => post.id === id ? {...post, title, description}: post)) 
         setToastLabel('✍️ Post is updated');
     },[posts]);
     
@@ -110,7 +100,7 @@ export const PostsProvider = ({children} : IProps) => {
         } else {
             return posts.filter((post : Post) => post.title === searchValue || post.description === searchValue || post.title.includes(searchValue) || post.description.includes(searchValue));
         }
-    }
+    };
 
      return (
         <PostContext.Provider value={{allPosts, addPost, deletePost, updatePost, changeToastState, displayToast, toastLabel, posts, searchValue, changeSearchValueState, searchPost}}>

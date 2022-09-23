@@ -5,24 +5,29 @@ import { usePosts } from '../providers/postProvider';
 
 export const useLocalStorage = (state : Post[]) => {
     const {posts} = usePosts();
+    
 
-    const encryptStateToLocalStorage = () => {
-        const filteredState = state.filter(post => post !== null && post !== undefined);
-        
-        return JSON.stringify(filteredState);
+    const encryptStateToLocalStorage = (state : Post[]) => {
+        return JSON.stringify(state);
     };
 
-    const sendEncrypedStateToLocalStorage = () => {
-        localStorage.setItem('posts', encryptStateToLocalStorage());
-    }
+    const decryptLocalStorageToState = (key : string) => {
+        return JSON.parse(key);
+    };
 
-   useEffect(() => {
-    if(window.localStorage.length === 0){
-        sendEncrypedStateToLocalStorage();
-    }
-    }, [])
+    const sendDataFromStateToLocalStorage = () => {   
+        return window.localStorage.setItem('posts', encryptStateToLocalStorage(posts));
+    };
 
     useMemo(() => {
-        sendEncrypedStateToLocalStorage();
+        sendDataFromStateToLocalStorage();
     }, [posts]);
+
+    useEffect(() => {
+        if (window.localStorage.length === 0) {
+            decryptLocalStorageToState('posts');
+        } else {
+            sendDataFromStateToLocalStorage();
+        }
+    }, [])
 };
